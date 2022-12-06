@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">OpenApiDemo</string>
+    <string name="alert_opened_success" />
+    <string name="alert_opened_failed" />
+    <string name="alert_delete_success" />
+    <string name="delete_alert_failed" />
 </resources>
