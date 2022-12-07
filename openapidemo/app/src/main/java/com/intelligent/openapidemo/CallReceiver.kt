@@ -11,10 +11,15 @@ import com.sca.in_telligent.openapi.data.network.model.PushNotification
 import com.sca.in_telligent.openapi.data.network.model.SuccessResponse
 import com.sca.in_telligent.openapi.service.HeadsUpNotificationActionReceiver
 
+@Suppress("DEPRECATION")
 class CallReceiver: HeadsUpNotificationActionReceiver() {
 
+    companion object{
+        private const val TAG = "CallReceiver"
+    }
+
     override fun onReceive(context: Context, intent: Intent?) {
-        Log.i("CallReceiver", "CallReceiver")
+        Log.i(TAG, "OnReceiveMessage")
         super.onReceive(context, intent)
         if (intent != null && intent.extras != null) {
             val action = intent.action
@@ -25,7 +30,7 @@ class CallReceiver: HeadsUpNotificationActionReceiver() {
             OpenAPI.getInstance().audioHelper.stopRingtone()
             if (action != null) {
                 if (action == Actions.ACTION_MARK_AS_READ && data != null) {
-                    Log.i("CallReceiver", "Mark as Read action")
+                    Log.i(TAG, "Mark as Read action")
                     Toast.makeText(context, "Mark as Read action", Toast.LENGTH_LONG).show()
                     OpenAPI.openedAlert(
                         data.notificationModel.id.toInt()
@@ -48,7 +53,7 @@ class CallReceiver: HeadsUpNotificationActionReceiver() {
                         }
                     }
                 } else if (action == Actions.ACTION_DELETE) {
-                    Log.i("CallReceiver", "Delete action")
+                    Log.i(TAG, "Delete action")
                     Toast.makeText(context, "Delete action", Toast.LENGTH_LONG).show()
                     OpenAPI.deleteAlert(
                         data.notificationModel.id.toInt()
@@ -71,7 +76,7 @@ class CallReceiver: HeadsUpNotificationActionReceiver() {
                         }
                     }
                 } else if (action == Actions.ACTION_OPEN) {
-                    Log.i("CallReceiver", "Open action")
+                    Log.i("TAG", "Open action")
                     Toast.makeText(context, "Open action", Toast.LENGTH_LONG).show()
                 }
             }

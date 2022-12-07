@@ -22,12 +22,7 @@ class TestApplication: Application() {
                 throwable
             )
         }
-        //Step 1
-        // This should be initialized BEFORE DI. Otherwise it will throw an exception
-        //initOpenApi(true);
-        //Step 1
-        // This should be initialized BEFORE DI. Otherwise it will throw an exception
-        //initOpenApi(true);
+
         initOpenApi()
 
     }

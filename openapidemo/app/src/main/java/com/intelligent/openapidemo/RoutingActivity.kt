@@ -12,19 +12,15 @@ class RoutingActivity:Activity() {
         super.onCreate(savedInstanceState)
         //to install the splashscreen
         installSplashScreen()
-        setContentView(R.layout.activity_main)
-        if(OpenAPI.getInstance().checkToken()){
+        val intent = if(OpenAPI.getInstance().checkToken()){
             // User already signed in
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            Intent(this, MainActivity::class.java)
         } else {
             // User is not signed in
-            val intent = Intent(this, SignInActivity::class.java)
-
-            startActivity(intent)
-            finish()
+            Intent(this, SignInActivity::class.java)
         }
+        startActivity(intent)
+        finish()
 
 
     }
