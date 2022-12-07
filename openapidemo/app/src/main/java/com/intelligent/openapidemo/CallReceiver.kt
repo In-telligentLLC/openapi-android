@@ -76,7 +76,7 @@ class CallReceiver: HeadsUpNotificationActionReceiver() {
                         }
                     }
                 } else if (action == Actions.ACTION_OPEN) {
-                    Log.i("TAG", "Open action")
+                    Log.i(TAG, "Open action")
                     Toast.makeText(context, "Open action", Toast.LENGTH_LONG).show()
                 }
             }
