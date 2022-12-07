@@ -11,10 +11,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.OpenApiDemo"
+        android:theme="@style/Theme.App.splashscreen"
+        android:name=".TestApplication"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
+            android:theme="@style/Theme.OpenApiDemo">
+
+        </activity>
+        <activity
+            android:name=".RoutingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +31,15 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+        </activity>
+        <activity
+            android:name=".SignInActivity"
+            android:theme="@style/Theme.OpenApiDemo">
+
+
+
+
+
         </activity>
     </application>
 
