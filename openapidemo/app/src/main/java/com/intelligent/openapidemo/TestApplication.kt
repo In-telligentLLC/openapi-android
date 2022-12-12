@@ -2,7 +2,6 @@ package com.intelligent.openapidemo
 
 import android.app.Application
 import com.google.firebase.BuildConfig
-import com.google.firebase.FirebaseApp
 import com.sca.in_telligent.openapi.OpenAPI
 import com.sca.in_telligent.openapi.service.HeadsUpNotificationActionReceiver
 import com.sca.in_telligent.openapi.util.Environment
@@ -11,11 +10,15 @@ import com.sca.seneca.lib.PrintLog
 import io.reactivex.rxjava3.plugins.RxJavaPlugins
 
 class TestApplication: Application() {
+
+
+    companion object {
+        var pushToken = "NA"
+    }
+
     override fun onCreate() {
         super.onCreate()
 
-
-        FirebaseApp.initializeApp(applicationContext)
         RxJavaPlugins.setErrorHandler { throwable: Throwable? ->
             PrintLog.print(
                 "Rx Error",
@@ -23,15 +26,21 @@ class TestApplication: Application() {
             )
         }
 
+
         initOpenApi()
 
+
     }
-    fun initOpenApi() {
+
+
+
+    private fun initOpenApi() {
         val configuration = OpenAPI.Configuration.Builder()
             .setAppVersion(BuildConfig.VERSION_NAME)
             .setDebug(true)
             .setEnvironment(Environment.DEV)
-            .setHeadsUpNotificationActionReceiver<HeadsUpNotificationActionReceiver>(CallReceiver()).build(applicationContext)
+            .setHeadsUpNotificationActionReceiver<HeadsUpNotificationActionReceiver>(CallReceiver())
+            .build(applicationContext)
         val partnerToken = "YegJcZtroTjbv51Vw7PR"
         OpenAPI.init(
             applicationContext,
@@ -41,11 +50,21 @@ class TestApplication: Application() {
         )
         OpenApiFlashHelper.newInstance(applicationContext)
     }
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
