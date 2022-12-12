@@ -1,45 +1,79 @@
 package com.intelligent.openapidemo
 
-import android.content.ContentValues.TAG
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.Window
 import android.widget.Button
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
-import com.intelligent.openapidemo.databinding.ActivityMainBinding
-import com.intelligent.openapidemo.databinding.ActivitySignInBinding
-import com.sca.in_telligent.openapi.OpenAPI
-import com.sca.in_telligent.openapi.OpenAPI.TAG
-import com.sca.seneca.lib.PrintLog
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
+
 
 
 class SignInActivity : AppCompatActivity() {
 
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_in)
-        var binding = ActivitySignInBinding.inflate(layoutInflater)
-
-
-        binding.signInButton.setOnClickListener {
-
-
-
-        }
-
-
-
+    private val dialog: Dialog by lazy {
+        Dialog(this)
 
     }
 
 
+    override fun onCreate(savedInstanceState: Bundle?) {
 
 
+        super.onCreate(savedInstanceState)
+        val signInViewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
+        setContentView(R.layout.activity_sign_in)
+        val signInButton = findViewById<Button>(R.id.sign_in_button)
+        val closeButton = findViewById<Button>(R.id.close_button)
+        val signInLayout = findViewById<ConstraintLayout>(R.id.sign_in_layout)
 
 
+        showDialog()
+        signInButton.setOnClickListener {
+            dialog.show()
 
+
+            signInViewModel.authorizeDevice(this)
+            signInViewModel.loginStatus.observe(this, Observer { status ->
+                dialog.cancel()
+                if (status) {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Snackbar.make(
+                        signInLayout, getString(R.string.signin_error_message),
+                        Snackbar.LENGTH_LONG
+                    )
+                        .setAction("Action", null).show()
+                }
+            })
+
+
+        }
+
+        closeButton.setOnClickListener {
+            finish()
+
+        }
+
+
+    }
+
+    private fun showDialog() {
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.custom_dialog)
+        dialog.findViewById<ProgressBar>(R.id.progressBar)
+
+
+    }
 
 
 }
