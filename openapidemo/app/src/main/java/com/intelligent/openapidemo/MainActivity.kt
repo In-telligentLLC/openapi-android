@@ -15,6 +15,8 @@ import com.sca.seneca.lib.PrintLog
 
 class MainActivity : AppCompatActivity() {
 
+
+
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
         private const val Notification_PERMISSION_CODE = 10
@@ -25,6 +27,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+
+
+
         checkLocationPermission()
         OpenAPI.checkDNDPermission(this)
         checkNotificationPermissions()
@@ -34,6 +40,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
     private fun checkLocationPermission() {
         if ((OpenAPI.getCommunityTypeAllowed(this) == CommunityTypeAllowed.PHYSICAL
                     || OpenAPI.getCommunityTypeAllowed(this) == CommunityTypeAllowed.ALL)
@@ -174,12 +181,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    }
 
 
 
 
 
 
-}
+
+
 
 
