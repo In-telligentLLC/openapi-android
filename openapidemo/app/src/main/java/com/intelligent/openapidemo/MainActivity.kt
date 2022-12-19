@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         navmenu.setNavigationItemSelectedListener(this)
         // To change the activity to fragment
        changeFragment(HomeFragment())
+        setToolBarTitle("DashBoard")
 
     }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
