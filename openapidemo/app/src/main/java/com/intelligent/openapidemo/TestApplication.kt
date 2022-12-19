@@ -1,8 +1,11 @@
 package com.intelligent.openapidemo
 
 import android.app.Application
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.MutableLiveData
 import com.google.firebase.BuildConfig
 import com.sca.in_telligent.openapi.OpenAPI
+import com.sca.in_telligent.openapi.data.network.model.Community
 import com.sca.in_telligent.openapi.service.HeadsUpNotificationActionReceiver
 import com.sca.in_telligent.openapi.util.Environment
 import com.sca.in_telligent.openapi.util.OpenApiFlashHelper
@@ -13,6 +16,8 @@ class TestApplication: Application() {
 
 
     companion object {
+
+
         var pushToken = "NA"
     }
 
@@ -50,6 +55,7 @@ class TestApplication: Application() {
         )
         OpenApiFlashHelper.newInstance(applicationContext)
     }
+
 }
 
 

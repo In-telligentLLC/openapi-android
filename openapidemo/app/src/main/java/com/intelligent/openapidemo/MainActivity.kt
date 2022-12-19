@@ -4,18 +4,31 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import com.google.android.material.navigation.NavigationView
+import com.intelligent.openapidemo.fragment.HomeFragment
+import com.intelligent.openapidemo.fragment.PrivateCommunityFragment
+import com.intelligent.openapidemo.fragment.SearchCommunityFragment
 import com.sca.in_telligent.openapi.OpenAPI
 import com.sca.in_telligent.openapi.service.CommunityUpdateWorker
 import com.sca.in_telligent.openapi.util.CommunityTypeAllowed
 import com.sca.seneca.lib.PrintLog
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
 
+class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener {
 
+    private lateinit var toolbar: Toolbar
+    private lateinit var toggle: ActionBarDrawerToggle
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
@@ -23,21 +36,74 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-
+        setContentView(R.layout.activity_main)
 
 
         checkLocationPermission()
         OpenAPI.checkDNDPermission(this)
-        checkNotificationPermissions()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            checkNotificationPermissions()
+        }
+        //for the tool bar
+        toolbar = findViewById(R.id.toolbar)
+        val drawerlayout =findViewById<DrawerLayout>(R.id.drawerlayout)
+        val navmenu =findViewById<NavigationView>(R.id.navmenu)
 
 
 
+        //toggle helps to handle the event when click on the hamburger sign and binds the all components
+        //together.
+        toggle=ActionBarDrawerToggle(this,drawerlayout,toolbar,R.string.open,R.string.close)
+        toggle.isDrawerIndicatorEnabled = true
 
+        drawerlayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        //to handle onclick on home,search community,private community
+        navmenu.setNavigationItemSelectedListener(this)
+        // To change the activity to fragment
+       changeFragment(HomeFragment())
+
+    }
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        drawerlayout.closeDrawer(GravityCompat.START)
+        when(item.itemId){
+            R.id.home ->{
+                setToolBarTitle("DashBoard")
+                changeFragment(HomeFragment())
+
+            }
+            R.id.search ->{
+                setToolBarTitle("SearchCommunity")
+               changeFragment(SearchCommunityFragment())
+            }
+            R.id.communities ->{
+               setToolBarTitle("PrivateCommunity")
+                changeFragment(PrivateCommunityFragment())
+            }
+        }
+
+        return true
+    }
+
+    // to set the title of the fragment
+    private fun setToolBarTitle(title: String)
+    {
+            toolbar.title = title
+
+    }
+
+
+    //to change the Fragment
+    private fun changeFragment(frag: Fragment)
+    {
+        val fragment =supportFragmentManager.beginTransaction()
+        fragment.replace(R.id.fragmentContainer, frag)
+        fragment.addToBackStack(null)
+        fragment.commit()
 
     }
 
@@ -166,8 +232,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-    private fun checkNotificationPermissions() {
-        if (ContextCompat.checkSelfPermission(
+    private fun checkNotificationPermissions() = if (ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.POST_NOTIFICATIONS
             ) == PackageManager.PERMISSION_GRANTED
@@ -179,7 +244,6 @@ class MainActivity : AppCompatActivity() {
                 Notification_PERMISSION_CODE
             )
         }
-    }
 
     }
 

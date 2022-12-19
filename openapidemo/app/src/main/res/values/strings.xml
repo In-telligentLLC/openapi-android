@@ -3,7 +3,7 @@
     <string name="alert_opened_success">Alert Opened Success</string>
     <string name="alert_opened_failed">Alert Opened Failed</string>
     <string name="alert_delete_success">Alert Delete Success</string>
-    <string name="delete_alert_failed" >Delete Alert Failed</string>
+    <string name="delete_alert_failed">Delete Alert Failed</string>
     <string name="close">Close</string>
     <string name="sign_in">Sign in</string>
     <string name="signin_error_message">Sign In Error</string>
@@ -18,4 +18,8 @@
     <string name="provide_location_access">provide location acess</string>
     <string name="need_background_location">need background location</string>
     <string name="provide_fine_location_access">"provide fine location "</string>
+    <string name="open">open</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="errortype_error">Error type is not none</string>
 </resources>
