@@ -21,6 +21,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        recyclerView.apply {
+            // set a LinearLayoutManager to handle Android
+            // RecyclerView behavior
+            layoutManager = LinearLayoutManager(activity)
+            // set the custom adapter to the RecyclerView
+            adapter = communityListAdapter
+
+        }
+
         val communitiesViewModel = ViewModelProvider(this).get(CommunitiesViewModel::class.java)
         activity?.let { communitiesViewModel.getCommunities(it) }
         communitiesViewModel.buildingModels.observe(viewLifecycleOwner) { communitiesList ->
@@ -41,18 +51,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         }
 
-        recyclerView.apply {
-            // set a LinearLayoutManager to handle Android
-            // RecyclerView behavior
-            layoutManager = LinearLayoutManager(activity)
-            // set the custom adapter to the RecyclerView
-            adapter = communityListAdapter
-
-        }
 
 
 
     }
+
 
 
 
