@@ -1,8 +1,10 @@
-package com.intelligent.openapidemo
+package com.intelligent.openapidemo.viewmodels
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.intelligent.openapidemo.SharedPreferencesHelper
+import com.intelligent.openapidemo.TestApplication
 import com.sca.in_telligent.openapi.OpenAPI
 import com.sca.seneca.lib.PrintLog
 

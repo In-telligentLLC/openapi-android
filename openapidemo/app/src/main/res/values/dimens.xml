@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_width">179dp</dimen>
+    <dimen name="button_height">53dp</dimen>
+    <dimen name="button_margin">16dp</dimen>
+    <dimen name="layoutmargin">56dp</dimen>
+    <dimen name="width">252dp</dimen>
+    <dimen name="height">69dp</dimen>
+    <dimen name="textsize">30sp</dimen>
+    <dimen name="toolbarwidth">409dp</dimen>
+</resources>
