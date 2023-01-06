@@ -12,7 +12,7 @@ import io.reactivex.rxjava3.core.Observable
 class FcmUtil {
 
     companion object {
-        var fcmToken = Observable.just("NA")
+        val fcmToken = Observable.just("NA")
         fun registerPush(context: Context) {
             OpenAPI.registerPushToken(SharedPreferencesHelper.getFcmToken(context)) { status ->
                 PrintLog.print(

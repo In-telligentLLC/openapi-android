@@ -7,10 +7,12 @@ import android.content.SharedPreferences
 object  SharedPreferencesHelper {
 
     private const val IS_LOGGED_IN = "IsLoggedIn"
+    private const val FCM_TOKEN ="FcmToken"
+    private const val OPEN_API_DEMO_SHARED_PREF = "OpenApiDemoSharedPref"
     //This method is used for get the shared preferences
 
     private fun getSharedPreferences(context: Context): SharedPreferences? {
-        return context.getSharedPreferences("OpenApiDemoSharedPref", Context.MODE_PRIVATE)
+        return context.getSharedPreferences(OPEN_API_DEMO_SHARED_PREF, Context.MODE_PRIVATE)
     }
 
     //This method is used for set the login status
@@ -25,7 +27,7 @@ object  SharedPreferencesHelper {
 
     fun setFcmToken(context: Context, token: String?) {
         val editor = getSharedPreferences(context)!!.edit()
-        editor.putString("FcmToken",token)
+        editor.putString(FCM_TOKEN,token)
         editor.apply()
     }
     /**
@@ -43,7 +45,7 @@ object  SharedPreferencesHelper {
      * @return String status
      */
     fun getFcmToken(context: Context): String? {
-        return getSharedPreferences(context)!!.getString("FcmToken", "")
+        return getSharedPreferences(context)!!.getString(FCM_TOKEN, "")
     }
 
 
