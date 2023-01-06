@@ -2,11 +2,10 @@ package com.intelligent.openapidemo
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.google.firebase.messaging.FirebaseMessaging
-import com.intelligent.openapidemo.utils.FcmUtil
+
 
 object  SharedPreferencesHelper {
-    private const val IS_LOGGED_IN = "IsLoggedIn"
+    private const val IS_LOGGED_IN = (R.string.isloggedin)
 
     //This method is used for get the shared preferences
 
@@ -18,7 +17,7 @@ object  SharedPreferencesHelper {
 
     fun setLogedIn(context: Context, isLoggedIn: Boolean) {
         val editor = getSharedPreferences(context)!!.edit()
-        editor.putBoolean(IS_LOGGED_IN, isLoggedIn)
+        editor.putBoolean(IS_LOGGED_IN.toString(), isLoggedIn)
         editor.apply()
     }
 
@@ -26,7 +25,7 @@ object  SharedPreferencesHelper {
 
     fun setFcmToken(context: Context, token: String?) {
         val editor = getSharedPreferences(context)!!.edit()
-        editor.putString("FcmToken",token)
+        editor.putString(context.getString(R.string.FcmToken),token)
         editor.apply()
     }
     /**
@@ -36,7 +35,7 @@ object  SharedPreferencesHelper {
      */
 
     fun getLogedIn(context: Context): Boolean {
-        return getSharedPreferences(context)!!.getBoolean(IS_LOGGED_IN, false)
+        return getSharedPreferences(context)!!.getBoolean(IS_LOGGED_IN.toString(), false)
     }
     /**
      * This method is used for get the Fcm Token
