@@ -2,6 +2,7 @@ package com.intelligent.openapidemo.fragment
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,9 +14,9 @@ import com.sca.in_telligent.openapi.data.network.model.ErrorType
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
-class HomeFragment : Fragment(R.layout.fragment_home) {
+ class HomeFragment : Fragment(R.layout.fragment_home), CommunityListAdapter.ItemClick{
 
-    private var communityListAdapter: CommunityListAdapter = CommunityListAdapter()
+     private var communityListAdapter: CommunityListAdapter = CommunityListAdapter(this)
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,13 +36,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         activity?.let { communitiesViewModel.getCommunities(it) }
         communitiesViewModel.buildingModels.observe(viewLifecycleOwner) { communitiesList ->
 
-            if (communitiesList.errorType==ErrorType.NONE){
+            if (communitiesList.errorType == ErrorType.NONE) {
 
                 communityListAdapter.getCommunitiesList(communitiesList.communities)
 
-            }
-            else
-            {
+            } else {
                 Snackbar.make(
                     homeFragmentLayout, getString(R.string.errortype_error),
                     Snackbar.LENGTH_LONG
@@ -51,12 +50,17 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         }
 
-
-
-
     }
 
+     override fun buildingSelected(buildingId: Int) {
+         activity?.let {  it.supportFragmentManager.beginTransaction()
+             .replace(R.id.fragmentContainer,AlertListFragment.newInstance(buildingId))
+             .addToBackStack(null)
+             .commit()
+
+         }
+
+     }
 
 
-
-}
+ }

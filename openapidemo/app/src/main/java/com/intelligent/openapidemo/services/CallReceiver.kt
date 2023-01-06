@@ -1,10 +1,11 @@
-package com.intelligent.openapidemo
+package com.intelligent.openapidemo.services
 
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
+import com.intelligent.openapidemo.R
 import com.sca.in_telligent.openapi.Actions
 import com.sca.in_telligent.openapi.OpenAPI
 import com.sca.in_telligent.openapi.data.network.model.PushNotification
@@ -12,9 +13,9 @@ import com.sca.in_telligent.openapi.data.network.model.SuccessResponse
 import com.sca.in_telligent.openapi.service.HeadsUpNotificationActionReceiver
 
 @Suppress("DEPRECATION")
-class CallReceiver: HeadsUpNotificationActionReceiver() {
+class CallReceiver : HeadsUpNotificationActionReceiver() {
 
-    companion object{
+    companion object {
         private const val TAG = "CallReceiver"
     }
 
@@ -42,8 +43,7 @@ class CallReceiver: HeadsUpNotificationActionReceiver() {
                                 Toast.LENGTH_LONG
                             ).show()
                         } else if (successResponse != null) {
-                            Toast.makeText(context, successResponse.error, Toast.LENGTH_LONG)
-                                .show()
+                            Toast.makeText(context, successResponse.error, Toast.LENGTH_LONG).show()
                         } else {
                             Toast.makeText(
                                 context,
@@ -65,8 +65,7 @@ class CallReceiver: HeadsUpNotificationActionReceiver() {
                                 Toast.LENGTH_LONG
                             ).show()
                         } else if (successResponse != null) {
-                            Toast.makeText(context, successResponse.error, Toast.LENGTH_LONG)
-                                .show()
+                            Toast.makeText(context, successResponse.error, Toast.LENGTH_LONG).show()
                         } else {
                             Toast.makeText(
                                 context,

@@ -18,6 +18,7 @@ import com.google.android.material.navigation.NavigationView
 import com.intelligent.openapidemo.fragment.HomeFragment
 import com.intelligent.openapidemo.fragment.PrivateCommunityFragment
 import com.intelligent.openapidemo.fragment.SearchCommunityFragment
+import com.intelligent.openapidemo.utils.LocationPermissionUtil
 import com.sca.in_telligent.openapi.OpenAPI
 import com.sca.in_telligent.openapi.service.CommunityUpdateWorker
 import com.sca.in_telligent.openapi.util.CommunityTypeAllowed

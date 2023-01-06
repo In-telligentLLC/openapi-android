@@ -3,6 +3,7 @@ package com.intelligent.openapidemo
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.widget.Button
 import android.widget.ProgressBar
@@ -37,8 +38,7 @@ class SignInActivity : AppCompatActivity() {
         showDialog()
         signInButton.setOnClickListener {
             dialog.show()
-
-
+            Log.i("AUT","authorize device")
             signInViewModel.authorizeDevice(this)
             signInViewModel.loginStatus.observe(this, Observer { status ->
                 dialog.cancel()

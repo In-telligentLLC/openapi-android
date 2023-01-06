@@ -2,6 +2,8 @@ package com.intelligent.openapidemo
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.firebase.messaging.FirebaseMessaging
+import com.intelligent.openapidemo.utils.FcmUtil
 
 object  SharedPreferencesHelper {
     private const val IS_LOGGED_IN = "IsLoggedIn"
@@ -24,7 +26,7 @@ object  SharedPreferencesHelper {
 
     fun setFcmToken(context: Context, token: String?) {
         val editor = getSharedPreferences(context)!!.edit()
-        editor.putString("FcmToken", token)
+        editor.putString("FcmToken",FirebaseMessaging.getInstance().token.toString())
         editor.apply()
     }
     /**

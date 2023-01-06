@@ -4,6 +4,8 @@ plugins {
     //plugin realm
     id "io.realm.kotlin" version "1.5.0"
     id 'kotlin-android-extensions'
+    id 'com.google.gms.google-services'
+
 
 
 }
@@ -54,7 +56,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.google.firebase:firebase-messaging:23.1.0'
+    //FCM dependency
+    implementation 'com.google.firebase:firebase-messaging:23.1.1'
+
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.github.mrmike:ok2curl:0.7.0'
     //reactive
@@ -72,6 +76,8 @@ dependencies {
 
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation("androidx.cardview:cardview:1.0.0")
+
+    implementation 'com.google.firebase:firebase-core:21.1.1'
 
 
 

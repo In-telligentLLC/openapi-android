@@ -1,5 +1,7 @@
 package com.intelligent.openapidemo.adapters
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,33 +10,48 @@ import androidx.recyclerview.widget.RecyclerView
 import com.intelligent.openapidemo.R
 import com.sca.in_telligent.openapi.data.network.model.Community
 
-class CommunityListAdapter: RecyclerView.Adapter<CommunityListAdapter.CommunityHolder>() {
+class CommunityListAdapter ( private val listener: ItemClick): RecyclerView.Adapter<CommunityListAdapter.CommunityHolder>() {
 
-     private val communities: java.util.ArrayList<Community> = ArrayList()
+    private val communities: java.util.ArrayList<Community> = ArrayList()
+    private var mContext: Activity? = null
+    private var itemClick: ItemClick? = null
 
 
-    class CommunityHolder(itemView: View):RecyclerView.ViewHolder(itemView)
 
-    {
+
+    @SuppressLint("NotConstructor")
+    fun CommunityListAdapter(mContext: Activity?, itemClick: ItemClick?) {
+        mContext.also { this.mContext = it }
+        this.itemClick = itemClick
+    }
+
+
+    class CommunityHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var communityTextView: TextView = itemView.findViewById(R.id.community_list_item)
+
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommunityHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.communitylist_item, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.communitylist_item, parent, false)
         return CommunityHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: CommunityHolder, position: Int) {
-        val item = communities[position]
-        holder.communityTextView.text = item.name
+        val community = communities[position]
+        holder.communityTextView.text = community.name
+
+        holder.itemView.setOnClickListener {community.id.let { it1 -> listener.buildingSelected(buildingId = it1) }}
+
+
     }
 
     override fun getItemCount(): Int {
         return communities.size
     }
 
-    fun getCommunitiesList(communitiesList:List<Community>) {
+    fun getCommunitiesList(communitiesList: List<Community>) {
         communities.clear()
         communities.addAll(communitiesList)
         notifyDataSetChanged()
@@ -42,5 +59,10 @@ class CommunityListAdapter: RecyclerView.Adapter<CommunityListAdapter.CommunityH
 
     }
 
-
+    interface ItemClick {
+        fun buildingSelected(buildingId: Int)
+    }
 }
+
+
+
