@@ -30,9 +30,9 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val signInViewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
         setContentView(R.layout.activity_sign_in)
-        var signInButton = findViewById<Button>(R.id.sign_in_button)
-        var closeButton = findViewById<Button>(R.id.close_button)
-        var signInLayout = findViewById<ConstraintLayout>(R.id.sign_in_layout)
+        val signInButton = findViewById<Button>(R.id.sign_in_button)
+        val closeButton = findViewById<Button>(R.id.close_button)
+        val signInLayout = findViewById<ConstraintLayout>(R.id.sign_in_layout)
 
 
         showDialog()

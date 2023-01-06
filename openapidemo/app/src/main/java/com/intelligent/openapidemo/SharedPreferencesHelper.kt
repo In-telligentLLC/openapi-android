@@ -28,7 +28,6 @@ object  SharedPreferencesHelper {
         val editor = getSharedPreferences(context)!!.edit()
         editor.putString("FcmToken",token)
         editor.apply()
-
     }
     /**
      * This method is used for get the login status

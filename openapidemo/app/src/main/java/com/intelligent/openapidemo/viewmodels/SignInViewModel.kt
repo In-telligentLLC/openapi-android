@@ -9,7 +9,7 @@ import com.sca.in_telligent.openapi.OpenAPI
 import com.sca.seneca.lib.PrintLog
 
 class SignInViewModel:ViewModel () {
-    var loginStatus = MutableLiveData<Boolean>()
+    val loginStatus = MutableLiveData<Boolean>()
 
 
     fun authorizeDevice(context: Context) {
