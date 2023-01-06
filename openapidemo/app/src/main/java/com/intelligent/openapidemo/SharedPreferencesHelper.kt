@@ -26,8 +26,9 @@ object  SharedPreferencesHelper {
 
     fun setFcmToken(context: Context, token: String?) {
         val editor = getSharedPreferences(context)!!.edit()
-        editor.putString("FcmToken",FirebaseMessaging.getInstance().token.toString())
+        editor.putString("FcmToken",token)
         editor.apply()
+
     }
     /**
      * This method is used for get the login status

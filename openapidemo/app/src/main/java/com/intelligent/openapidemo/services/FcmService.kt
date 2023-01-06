@@ -3,7 +3,9 @@ package com.intelligent.openapidemo.services
 import android.util.Log
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.intelligent.openapidemo.SharedPreferencesHelper
 import com.intelligent.openapidemo.TestApplication
+import com.intelligent.openapidemo.utils.FcmUtil
 import com.sca.in_telligent.openapi.OpenAPI
 import com.sca.in_telligent.openapi.data.network.model.ErrorType
 import com.sca.in_telligent.openapi.data.network.model.SuccessResponse
@@ -42,15 +44,8 @@ class FcmService: FirebaseMessagingService() {
 
     override fun onNewToken(s: String) {
         super.onNewToken(s)
-        OpenAPI.registerPushToken(
-            s
-        ) { status: SuccessResponse ->
-            if (status.isSuccess) {
-                Log.v(TAG, "RefreshPushToken received success")
-            } else {
-                Log.v(TAG, "RefreshPushToken received failure")
-            }
-        }
+        FcmUtil.registerPush(this)
+        SharedPreferencesHelper.setFcmToken(this, s)
     }
 
 

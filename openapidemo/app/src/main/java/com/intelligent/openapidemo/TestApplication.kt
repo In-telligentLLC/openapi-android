@@ -60,20 +60,19 @@ class TestApplication : Application() {
 
     private fun generateDeviceToken() {
 
-
-        if (OpenAPI.getInstance().checkToken()) {
-            if(SharedPreferencesHelper.getLogedIn(this) && SharedPreferencesHelper.getFcmToken(this) != "" && SharedPreferencesHelper.getFcmToken(this) != "NA") {
-                FcmUtil.registerPush(this)
-            }
-
-        }
-
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
                 return@OnCompleteListener
             }
             val token = task.result // Now we have the Push device token is ready.
             Log.v(TAG, "Device Token: $token")
+             if(token.isNullOrEmpty()) {
+                 FcmUtil.registerPush(this)
+             }
+            SharedPreferencesHelper.setFcmToken(this, token)
+
+
+
 
         })
     }
