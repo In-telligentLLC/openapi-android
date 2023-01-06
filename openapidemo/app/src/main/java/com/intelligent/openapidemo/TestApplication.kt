@@ -62,7 +62,10 @@ class TestApplication : Application() {
 
 
         if (OpenAPI.getInstance().checkToken()) {
-            FcmUtil.registerPush(this)
+            if(SharedPreferencesHelper.getLogedIn(this) && SharedPreferencesHelper.getFcmToken(this) != "" && SharedPreferencesHelper.getFcmToken(this) != "NA") {
+                FcmUtil.registerPush(this)
+            }
+
         }
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
