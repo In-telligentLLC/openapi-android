@@ -5,8 +5,8 @@ import android.content.SharedPreferences
 
 
 object  SharedPreferencesHelper {
-    private const val IS_LOGGED_IN = (R.string.isloggedin)
 
+    private const val IS_LOGGED_IN = "IsLoggedIn"
     //This method is used for get the shared preferences
 
     private fun getSharedPreferences(context: Context): SharedPreferences? {
@@ -17,7 +17,7 @@ object  SharedPreferencesHelper {
 
     fun setLogedIn(context: Context, isLoggedIn: Boolean) {
         val editor = getSharedPreferences(context)!!.edit()
-        editor.putBoolean(IS_LOGGED_IN.toString(), isLoggedIn)
+        editor.putBoolean(IS_LOGGED_IN, isLoggedIn)
         editor.apply()
     }
 
@@ -25,7 +25,7 @@ object  SharedPreferencesHelper {
 
     fun setFcmToken(context: Context, token: String?) {
         val editor = getSharedPreferences(context)!!.edit()
-        editor.putString(context.getString(R.string.FcmToken),token)
+        editor.putString("FcmToken",token)
         editor.apply()
     }
     /**
@@ -35,7 +35,7 @@ object  SharedPreferencesHelper {
      */
 
     fun getLogedIn(context: Context): Boolean {
-        return getSharedPreferences(context)!!.getBoolean(IS_LOGGED_IN.toString(), false)
+        return getSharedPreferences(context)!!.getBoolean(IS_LOGGED_IN, false)
     }
     /**
      * This method is used for get the Fcm Token
