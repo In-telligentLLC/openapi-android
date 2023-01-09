@@ -4,7 +4,10 @@ pluginManagement {
         google()
         mavenCentral()
     }
+
 }
+
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -17,6 +20,7 @@ dependencyResolutionManagement {
             url 'https://jitpack.io'
         }
     }
+
 }
 rootProject.name = "OpenApiDemo"
 include ':app'

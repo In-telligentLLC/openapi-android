@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "770490310772",
+    "firebase_url": "https://openapisg-539e1.firebaseio.com",
+    "project_id": "openapisg",
+    "storage_bucket": "openapisg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770490310772:android:3442e5d6248bc994",
+        "android_client_info": {
+          "package_name": "com.sg.openapitest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "770490310772-1ss3p3usdp5k4o4l9m314ov87r89klns.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sg.openapitest",
+            "certificate_hash": "1a10034305c95b9be81ae987bb6bb7086c271efc"
+          }
+        },
+        {
+          "client_id": "770490310772-40he0l536po035pugm54rbvlaaglkh0c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sg.openapitest",
+            "certificate_hash": "767773b1ef3e4b0bd48f5a9e4777fd478e3bf601"
+          }
+        },
+        {
+          "client_id": "770490310772-efltoljvj4vdp5qbnpd7227d2ck7c6qe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8PuskgejcClTAmrSSBy-6TM5VB8d324M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "770490310772-efltoljvj4vdp5qbnpd7227d2ck7c6qe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "770490310772-hhtim416bs52lqc3m5bu33mtc94dmmct.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.senecaglobal.OpenAPIDemo.voip"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

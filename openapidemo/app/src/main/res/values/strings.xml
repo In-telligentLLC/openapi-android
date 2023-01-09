@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OpenApiDemo</string>
+    <string name="app_name">SGOpenAPI</string>
     <string name="alert_opened_success">Alert Opened Success</string>
     <string name="alert_opened_failed">Alert Opened Failed</string>
     <string name="alert_delete_success">Alert Delete Success</string>

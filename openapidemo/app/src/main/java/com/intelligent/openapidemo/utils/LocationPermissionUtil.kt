@@ -1,4 +1,4 @@
-package com.intelligent.openapidemo
+package com.intelligent.openapidemo.utils
 import android.Manifest
 import android.app.Activity
 import android.content.Context
@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.intelligent.openapidemo.R
 import com.sca.seneca.lib.PrintLog
 
 object LocationPermissionUtil {
