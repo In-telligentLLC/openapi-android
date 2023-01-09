@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
      private var communityListAdapter: CommunityListAdapter = CommunityListAdapter(this)
 
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -36,11 +37,19 @@ import kotlinx.android.synthetic.main.fragment_home.*
         activity?.let { communitiesViewModel.getCommunities(it) }
         communitiesViewModel.buildingModels.observe(viewLifecycleOwner) { communitiesList ->
 
+
             if (communitiesList.errorType == ErrorType.NONE) {
 
                 communityListAdapter.getCommunitiesList(communitiesList.communities)
 
             } else {
+            if (communitiesList.errorType==ErrorType.NONE){
+
+                communityListAdapter.getCommunitiesList(communitiesList.communities)
+
+            }
+            else
+            {
                 Snackbar.make(
                     homeFragmentLayout, getString(R.string.errortype_error),
                     Snackbar.LENGTH_LONG
@@ -64,3 +73,13 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 
  }
+
+
+
+
+    }
+
+
+
+
+}

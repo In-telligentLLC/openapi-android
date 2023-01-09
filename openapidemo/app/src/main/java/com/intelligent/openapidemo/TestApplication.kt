@@ -3,11 +3,16 @@ package com.intelligent.openapidemo
 import android.app.Application
 import android.util.Log
 import com.google.android.gms.tasks.OnCompleteListener
+
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.MutableLiveData
+
 import com.google.firebase.BuildConfig
 import com.google.firebase.messaging.FirebaseMessaging
 import com.intelligent.openapidemo.services.CallReceiver
 import com.intelligent.openapidemo.utils.FcmUtil
 import com.sca.in_telligent.openapi.OpenAPI
+import com.sca.in_telligent.openapi.data.network.model.Community
 import com.sca.in_telligent.openapi.service.HeadsUpNotificationActionReceiver
 import com.sca.in_telligent.openapi.util.Environment
 import com.sca.in_telligent.openapi.util.OpenApiFlashHelper
@@ -18,10 +23,8 @@ class TestApplication : Application() {
 
 
     companion object {
-
         private const val TAG = "TestApplication"
         var pushToken = "NA"
-
     }
 
     override fun onCreate() {
@@ -57,7 +60,7 @@ class TestApplication : Application() {
         )
         OpenApiFlashHelper.newInstance(applicationContext)
     }
-
+    
     private fun generateDeviceToken() {
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
@@ -76,7 +79,6 @@ class TestApplication : Application() {
 
         })
     }
-
 }
 
 
