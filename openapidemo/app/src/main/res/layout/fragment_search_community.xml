@@ -5,14 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.SearchCommunityFragment">
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="@dimen/width"
-        android:layout_height="@dimen/height"
-        android:text="SearchCommunityFragment"
-        android:textSize="@dimen/textsize"
+
+    <EditText
+        android:id="@+id/search_edit_text"
+        android:layout_width="200dp"
+        android:layout_height="44dp"
+        android:cursorVisible="true"
+        android:ems="10"
+        android:focusableInTouchMode="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.175"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.112" />
+
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.876"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.106" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="406dp"
+        android:layout_height="523dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_edit_text"
+        app:layout_constraintVertical_bias="1.0"
+        tools:listitem="@layout/communitylist_item" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
