@@ -61,6 +61,10 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
     }
 
+
+
+
+ }
      override fun buildingSelected(buildingId: Int) {
          activity?.let {  it.supportFragmentManager.beginTransaction()
              .replace(R.id.fragmentContainer,AlertListFragment.newInstance(buildingId))
@@ -72,14 +76,10 @@ import kotlinx.android.synthetic.main.fragment_home.*
      }
 
 
- }
-
-
-
 
     }
 
 
 
 
-}
+

@@ -1,6 +1,5 @@
 package com.intelligent.openapidemo.adapters
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
@@ -11,20 +10,10 @@ import com.intelligent.openapidemo.R
 import com.sca.in_telligent.openapi.data.network.model.Community
 
 
-class CommunityListAdapter ( private val listener: ItemClick): RecyclerView.Adapter<CommunityListAdapter.CommunityHolder>() {
+class CommunityListAdapter(private val listener: ItemClick) :
+    RecyclerView.Adapter<CommunityListAdapter.CommunityHolder>() {
 
     private val communities: java.util.ArrayList<Community> = ArrayList()
-    private var mContext: Activity? = null
-    private var itemClick: ItemClick? = null
-
-
-
-
-    @SuppressLint("NotConstructor")
-    fun CommunityListAdapter(mContext: Activity?, itemClick: ItemClick?) {
-        mContext.also { this.mContext = it }
-        this.itemClick = itemClick
-    }
 
 
     class CommunityHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -47,8 +36,13 @@ class CommunityListAdapter ( private val listener: ItemClick): RecyclerView.Adap
         val community = communities[position]
         holder.communityTextView.text = community.name
 
-        holder.itemView.setOnClickListener {community.id.let { it1 -> listener.buildingSelected(buildingId = it1) }}
-
+        holder.itemView.setOnClickListener {
+            community.id.let { it1 ->
+                listener.buildingSelected(
+                    buildingId = it1
+                )
+            }
+        }
 
 
         val item = communities[position]
@@ -61,8 +55,7 @@ class CommunityListAdapter ( private val listener: ItemClick): RecyclerView.Adap
     }
 
 
-
-    fun getCommunitiesList(communitiesList:List<Community>) {
+    fun getCommunitiesList(communitiesList: List<Community>) {
 
         communities.clear()
         communities.addAll(communitiesList)
@@ -80,5 +73,5 @@ class CommunityListAdapter ( private val listener: ItemClick): RecyclerView.Adap
 
 
 
-}
+
 
