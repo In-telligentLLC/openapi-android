@@ -17,8 +17,9 @@ class RoutingActivity : Activity() {
         installSplashScreen()
         val intent = if (OpenAPI.getInstance().checkToken()) {
             // User already signed in
-            if((SharedPreferencesHelper.getFcmToken(this) != "" && SharedPreferencesHelper.getFcmToken(this) != "NA"))
-            FcmUtil.registerPush(this)
+            if((SharedPreferencesHelper.getFcmToken(this) != "" && SharedPreferencesHelper.getFcmToken(this) != "NA")) {
+                FcmUtil.registerPush(this)
+            }
 
 
             Intent(this, MainActivity::class.java)
