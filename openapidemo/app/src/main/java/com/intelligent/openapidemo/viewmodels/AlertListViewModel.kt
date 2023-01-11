@@ -14,6 +14,7 @@ class AlertListViewModel : ViewModel() {
 
     fun getAlertList(activity: FragmentActivity, buildingID: Int) {
 
+
         OpenAPI.getNotificationsByBuilding(buildingID) { result ->
 
             communityAlert.postValue(result)
