@@ -81,7 +81,14 @@ class AlertListFragment : Fragment() ,AlertListAdapter.ItemClick {
 
     }
 
-    override fun openCommunityAlert(notificationId: Int) {
+    override fun openAlertDetail(notificationId: Int) {
+
+        activity?.let {  it.supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer,AlertDetailFragment.newInstance(notificationId))
+            .addToBackStack(null)
+            .commit()
+
+        }
         OpenAPI.openedAlert(notificationId) { response ->
             if (response != null && response.isSuccess) {
 

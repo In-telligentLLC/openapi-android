@@ -36,7 +36,7 @@ class AlertListAdapter(private val listener: AlertListAdapter.ItemClick) :
         holder.dateTextView.text = item.date.toString()
         holder.itemView.setOnClickListener {
             item.id.let { it1 ->
-                listener.openCommunityAlert(
+                listener.openAlertDetail(
                     notificationId = it1
                 )
             }
@@ -59,7 +59,7 @@ class AlertListAdapter(private val listener: AlertListAdapter.ItemClick) :
     }
 
     interface ItemClick {
-        fun openCommunityAlert(notificationId: Int)
+        fun openAlertDetail(notificationId: Int)
     }
 
 

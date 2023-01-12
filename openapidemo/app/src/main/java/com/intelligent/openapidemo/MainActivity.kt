@@ -16,7 +16,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 import com.intelligent.openapidemo.fragment.HomeFragment
-import com.intelligent.openapidemo.fragment.PrivateCommunityFragment
 import com.intelligent.openapidemo.fragment.SearchCommunityFragment
 import com.intelligent.openapidemo.utils.LocationPermissionUtil
 import com.sca.in_telligent.openapi.OpenAPI
@@ -82,10 +81,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
                 setToolBarTitle("SearchCommunity")
                changeFragment(SearchCommunityFragment())
             }
-            R.id.communities ->{
-               setToolBarTitle("PrivateCommunity")
-                changeFragment(PrivateCommunityFragment())
-            }
+
         }
 
         return true
