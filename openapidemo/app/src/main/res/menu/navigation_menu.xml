@@ -9,8 +9,5 @@
         android:id="@+id/search"
         android:icon="@drawable/searchicon"
         android:title="SearchCommunities" />
-    <item
-        android:icon="@drawable/privatecommunity"
-        android:title="PrivateCommunities"
-        android:id="@+id/communities"/>
+
 </menu>
