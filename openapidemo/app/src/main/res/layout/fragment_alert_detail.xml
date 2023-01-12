@@ -9,61 +9,50 @@
 
 
     <TextView
-        android:id="@+id/communitytitle"
+        android:id="@+id/alert_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:padding="8dp"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="@dimen/layout_margin"
+        android:padding="@dimen/padding"
+        android:textSize="@dimen/textSize"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.055" />
+        tools:text="Test title"
+        />
 
     <TextView
-        android:id="@+id/communitydescription"
+        android:id="@+id/alert_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_marginTop="36dp"
-        android:padding="8dp"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/communitytitle"
-        app:layout_constraintVertical_bias="0.048" />
+        android:layout_margin="@dimen/layout_margin"
+        android:padding="@dimen/padding"
+        android:textSize="@dimen/textSize"
+        app:layout_constraintTop_toBottomOf="@+id/alert_title"
+        tools:text="Test description"
+         />
 
     <TextView
-        android:id="@+id/communitydate"
-        android:layout_width="match_parent"
+        android:id="@+id/alert_date"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:padding="8dp"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="@dimen/layout_margin"
+        android:padding="@dimen/padding"
+        android:textSize="@dimen/textSize"
+        app:layout_constraintTop_toBottomOf="@+id/alert_description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/communitydescription"
-        app:layout_constraintVertical_bias="0.088" />
+        tools:text="Test date"
+/>
 
     <TextView
-        android:id="@+id/communitytype"
-        android:layout_width="match_parent"
+        android:id="@+id/alert_type"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:padding="8dp"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
+        android:layout_margin="@dimen/layout_margin"
+        android:padding="@dimen/padding"
+        android:textSize="@dimen/textSize"
+        app:layout_constraintTop_toBottomOf="@+id/alert_description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/communitydate"
-        app:layout_constraintVertical_bias="0.122" />
+        tools:text="Test type"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

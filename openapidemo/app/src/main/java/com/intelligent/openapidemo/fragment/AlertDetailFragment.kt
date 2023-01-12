@@ -43,21 +43,21 @@ class AlertDetailFragment : Fragment() {
     ): View? {
         val rootView = inflater.inflate(layout.fragment_alert_detail, container, false)
 
-        val titleTextView: TextView = rootView.findViewById(R.id.communitytitle)
-        val descriptionTextView: TextView = rootView.findViewById(R.id.communitydescription)
-        val dateTextView: TextView = rootView.findViewById(R.id.communitydate)
-        val alertTypeTextView: TextView = rootView.findViewById(R.id.communitytype)
+        val titleTextView: TextView = rootView.findViewById(R.id.alert_title)
+        val descriptionTextView: TextView = rootView.findViewById(R.id.alert_description)
+        val dateTextView: TextView = rootView.findViewById(R.id.alert_date)
+        val alertTypeTextView: TextView = rootView.findViewById(R.id.alert_type)
 
 
-        val alertDetailScreenViewModel =
+        val alertDetailViewModel =
             ViewModelProvider(this).get(AlertDetailViewModel::class.java)
-        activity?.let { alertDetailScreenViewModel.getAlertDetail(notificationId) }
-        alertDetailScreenViewModel.communityAlertDetail.observe(viewLifecycleOwner) { communitiesAlertDetail ->
+        activity?.let { alertDetailViewModel.getAlertDetail(notificationId) }
+        alertDetailViewModel.alertDetail.observe(viewLifecycleOwner) { alertDetail ->
 
-            titleTextView.text = communitiesAlertDetail.title
-            descriptionTextView.text = communitiesAlertDetail.description
-            dateTextView.text = communitiesAlertDetail.date.toString()
-            alertTypeTextView.text = communitiesAlertDetail.type
+            titleTextView.text = alertDetail.title
+            descriptionTextView.text = alertDetail.description
+            dateTextView.text = alertDetail.date.toString()
+            alertTypeTextView.text = alertDetail.type
 
 
         }

@@ -7,14 +7,14 @@ import com.sca.in_telligent.openapi.data.network.model.Notification
 
 class AlertDetailViewModel:ViewModel() {
 
-    val communityAlertDetail = MutableLiveData<Notification>()
+    val alertDetail = MutableLiveData<Notification>()
 
 
     fun getAlertDetail(notificationId: Int) {
 
         OpenAPI.getCompleteNotification(notificationId){response->
 
-            communityAlertDetail.postValue(response)
+            alertDetail.postValue(response)
         }
 
     }

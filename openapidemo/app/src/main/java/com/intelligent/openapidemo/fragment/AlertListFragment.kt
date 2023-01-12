@@ -81,7 +81,7 @@ class AlertListFragment : Fragment() ,AlertListAdapter.ItemClick {
 
     }
 
-    override fun openCommunityDetailAlert(notificationId: Int) {
+    override fun openAlertDetail(notificationId: Int) {
 
         activity?.let {  it.supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer,AlertDetailFragment.newInstance(notificationId))
