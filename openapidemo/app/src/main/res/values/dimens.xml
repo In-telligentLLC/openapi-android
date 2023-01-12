@@ -11,4 +11,5 @@
     <dimen name="padding">8dp</dimen>
     <dimen name="layout_margin">5dp</dimen>
     <dimen name="textSize">25sp</dimen>
+    <dimen name="alerttextsize">20sp</dimen>
 </resources>

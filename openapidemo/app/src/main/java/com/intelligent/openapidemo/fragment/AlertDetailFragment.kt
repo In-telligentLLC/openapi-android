@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.intelligent.openapidemo.R
 import com.intelligent.openapidemo.R.layout
 import com.intelligent.openapidemo.viewmodels.AlertDetailViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AlertDetailFragment : Fragment() {
     companion object {
@@ -47,17 +49,19 @@ class AlertDetailFragment : Fragment() {
         val descriptionTextView: TextView = rootView.findViewById(R.id.alert_description)
         val dateTextView: TextView = rootView.findViewById(R.id.alert_date)
         val alertTypeTextView: TextView = rootView.findViewById(R.id.alert_type)
-
-
         val alertDetailViewModel =
             ViewModelProvider(this).get(AlertDetailViewModel::class.java)
         activity?.let { alertDetailViewModel.getAlertDetail(notificationId) }
         alertDetailViewModel.alertDetail.observe(viewLifecycleOwner) { alertDetail ->
 
+            val date = alertDetail.date
+            val alertDate = SimpleDateFormat("MM/dd/yyyy").format(Date(date))
+
+
             titleTextView.text = alertDetail.title
             descriptionTextView.text = alertDetail.description
-            dateTextView.text = alertDetail.date.toString()
-            alertTypeTextView.text = alertDetail.type
+            dateTextView.text = alertDate
+            alertTypeTextView.text=alertDetail.type
 
 
         }
