@@ -9,7 +9,7 @@ class AlertDetailViewModel : ViewModel() {
 
     val alertDetail = MutableLiveData<Notification>()
     var notificationTitle = MutableLiveData<String>()
-    var description = MutableLiveData<String>()
+    var notificationDescription = MutableLiveData<String>()
     var notificationLanguages = MutableLiveData<NotificationLanguageResponse>()
 
     fun getAlertDetail(notificationId: Int) {
@@ -23,7 +23,7 @@ class AlertDetailViewModel : ViewModel() {
 
         OpenAPI.getTranslation(notificationId, language) { translationResponse ->
             notificationTitle.postValue(translationResponse.title)
-            description.postValue(translationResponse.body)
+            notificationDescription.postValue(translationResponse.body)
         }
 
     }

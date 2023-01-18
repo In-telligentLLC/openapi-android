@@ -12,7 +12,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.intelligent.openapidemo.R
 import com.intelligent.openapidemo.R.layout
+import com.intelligent.openapidemo.utils.CommonUtils
 import com.intelligent.openapidemo.viewmodels.AlertDetailViewModel
+import com.intelligent.openapidemo.viewmodels.AlertListViewModel
+import com.sca.in_telligent.openapi.data.network.model.Notification
 import com.sca.in_telligent.openapi.data.network.model.NotificationLanguage
 import java.text.SimpleDateFormat
 import java.util.*
@@ -21,7 +24,9 @@ import java.util.*
 class AlertDetailFragment : Fragment() {
 
     private var languageOption: List<NotificationLanguage> = ArrayList()
+    lateinit var alertDetailViewModel: AlertDetailViewModel
     companion object {
+
 
         private const val ARG_PARAM_NOTIFICATION_ID = "notificationId"
         fun newInstance(notificationId: Int): AlertDetailFragment {
@@ -40,11 +45,18 @@ class AlertDetailFragment : Fragment() {
             notificationId = it.getInt(ARG_PARAM_NOTIFICATION_ID)
         }
     }
+
+
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        alertDetailViewModel =
+            ViewModelProvider(this)[AlertDetailViewModel::class.java]
         val rootView = inflater.inflate(layout.fragment_alert_detail, container, false)
         val titleTextView: TextView = rootView.findViewById(R.id.alert_title)
         val descriptionTextView: TextView = rootView.findViewById(R.id.alert_description)
@@ -57,14 +69,12 @@ class AlertDetailFragment : Fragment() {
             displayLanguages()
 
         }
-        val alertDetailViewModel =
-            ViewModelProvider(this)[AlertDetailViewModel::class.java]
         activity?.let { alertDetailViewModel.getLanguages() }
         activity?.let { alertDetailViewModel.getAlertDetail(notificationId) }
         alertDetailViewModel.alertDetail.observe(viewLifecycleOwner) { alertDetail ->
 
             val date = alertDetail.date
-            val alertDate = SimpleDateFormat("MM/dd/yyyy").format(Date(date))
+            val alertDate=CommonUtils.changeDateFormat(date)
             titleTextView.text = alertDetail.title
             descriptionTextView.text = alertDetail.description
             dateTextView.text = alertDate
@@ -78,20 +88,20 @@ class AlertDetailFragment : Fragment() {
         }
         alertDetailViewModel.notificationTitle.observe(viewLifecycleOwner) { title ->
 
-            titleTextView.text = title.toString()
+            titleTextView.text = title
 
         }
-        alertDetailViewModel.description.observe(viewLifecycleOwner) { description ->
+        alertDetailViewModel.notificationDescription.observe(viewLifecycleOwner) { description ->
 
             descriptionTextView.text = description
 
         }
         return rootView
+
+
     }
     private fun displayLanguages() {
 
-        val alertDetailViewModel =
-            ViewModelProvider(this)[AlertDetailViewModel::class.java]
         val builder = MaterialAlertDialogBuilder(requireActivity())
         builder
             .setTitle("select a language")
@@ -107,5 +117,6 @@ class AlertDetailFragment : Fragment() {
         val dialog = builder.create()
         dialog.show()
     }
+
 }
 

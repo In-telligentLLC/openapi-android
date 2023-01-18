@@ -1,12 +1,12 @@
 package com.intelligent.openapidemo.adapters
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.intelligent.openapidemo.R
+import com.intelligent.openapidemo.utils.CommonUtils
 import com.sca.in_telligent.openapi.data.network.model.Notification
 
 class AlertListAdapter(private val listener: AlertListAdapter.ItemClick) :
@@ -31,9 +31,11 @@ class AlertListAdapter(private val listener: AlertListAdapter.ItemClick) :
 
     override fun onBindViewHolder(holder: AlertListHolder, position: Int) {
         val item = communityAlertList[position]
+        val date = item.date
+        val alertDate =CommonUtils.changeDateFormat(date)
         holder.titleTextView.text = item.title
         holder.typeTextView.text = item.type
-        holder.dateTextView.text = item.date.toString()
+        holder.dateTextView.text = alertDate
         holder.itemView.setOnClickListener {
             item.id.let { it1 ->
                 listener.openAlertDetail(
