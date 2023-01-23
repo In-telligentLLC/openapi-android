@@ -15,4 +15,5 @@
     <dimen name="translate_button_margin">144dp</dimen>
     <dimen name="translate_button_margin_bottom">72dp</dimen>
     <dimen name="margin_bottom">24dp</dimen>
+    <dimen name="search_edit_text_margin">68dp</dimen>
 </resources>
