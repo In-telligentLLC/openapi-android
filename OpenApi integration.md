@@ -91,7 +91,7 @@ This library is built by In-telligent with proprietary code to use below feature
    i. checkToken - Check if the app is already authenticated.<br>
    ii. authorization - If not authorized already (checkToken returns false), make a call to "authorization" method.
       ```java
-      OpenAPI.getInstance().authorization(pushToken, new Consumer<SuccessResponse>() {
+      OpenAPI.authorization(pushToken, context, new Consumer<SuccessResponse>() {
        @Override
        public void accept(SuccessResponse status) {
         // If login success, register push token here
@@ -100,7 +100,7 @@ This library is built by In-telligent with proprietary code to use below feature
       ```
 4. <b>RegisterPushToken</b>: (It is required if you are using In-telligent system to send alerts). Generate Device Token as described in the Firebase documentation. Pass this token to the OpenAPI in the initial launch and when the app detected a change in the push token (ideally should check in every app launch).
    ```java
-   OpenAPI.getInstance().registerPushToken((token,new Consumer<SuccessResponse>(){
+   OpenAPI.registerPushToken((token, context, new Consumer<SuccessResponse>(){
     @Override
     public void accept(SuccessResponse status){
      if (status.isSuccess())
@@ -137,7 +137,7 @@ This library is built by In-telligent with proprietary code to use below feature
 1. <b>Override DND & Silent settings of the device:</b><br>
    On FirebaseService class "onReceiveMessage" method, call OpenAPI.relayPushNotification method with the received payload. The OpenAPI will take care of bypassing the DND, Silent settings, and alert the user with loudest possible sound from the device. (Provide the required permissions as described in getting started section)  
    ```java
-   OpenAPI.getInstance().relayPushNotification(remoteMessage.getData(), this, true,errorType -> {
+   OpenAPI.relayPushNotification(remoteMessage.getData(), this, true,errorType -> {
     if (errorType == ErrorType.NOTIFICATION_PERMISSION_NOT_GRANTED){
      PrintLog.print("Tag", "Notification permission not allowed");
     }
@@ -148,12 +148,12 @@ This library is built by In-telligent with proprietary code to use below feature
    <b>Notification actions handling:</b>Notification will have 3 options (Open, Mark as read, and Delete). These call actions are to be handled in the application receiver class (Refer to the CallReceiver class in the quickstart application).
    ```java
    // Alert Opened
-   OpenAPI.openedAlert(Integer.parseInt(data.getNotificationModel().getId()), successResponse -> {
+   OpenAPI.openedAlert(Integer.parseInt(data.getNotificationModel().getId()), context, successResponse -> {
     //………..
    });
 
    // Alert Deleted
-   OpenAPI.deleteAlert(Integer.parseInt(data.getNotificationModel().getId()),  successResponse -> {
+   OpenAPI.deleteAlert(Integer.parseInt(data.getNotificationModel().getId()), context,  successResponse -> {
     //………..
    });
    ```
@@ -241,7 +241,7 @@ This library is built by In-telligent with proprietary code to use below feature
    Upon authentication, you can translate in-telligent delivered notifications to any other supported language.
    To get supported languages
    ```java
-   OpenAPI.getLanguages(new Consumer<NotificationLanguageResponse>() {
+   OpenAPI.getLanguages(context, new Consumer<NotificationLanguageResponse>() {
     @Override
     public void accept(NotificationLanguageResponse languageResponse) throws Exception {
      System.out.println(languageResponse.getLanguages());
@@ -251,7 +251,7 @@ This library is built by In-telligent with proprietary code to use below feature
    ```
    To translate the alert into supported languages
    ```java
-   OpenAPI.getTranslation(id,languageValue,new Consumer<TranslationResponse>() {
+   OpenAPI.getTranslation(id,languageValue, context,new Consumer<TranslationResponse>() {
     @Override
     public void accept(TranslationResponse translationResponse) throws Exception {
      System.out.println(translationResponse.getBody());
