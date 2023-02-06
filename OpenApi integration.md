@@ -81,7 +81,9 @@ This library is built by In-telligent with proprietary code to use below feature
    .setAppVersion(BuildConfig.VERSION_CODE)
    .setDebug(true)
    .setEnvironment(Environment.RELEASE) // Environment.DEV
-   .setHeadsUpNotificationActionReceiver(new CallReceiver()).build(getApplicationContext());
+   .setHeadsUpNotificationActionReceiver(new CallReceiver())
+   .setNotificationOpenActivity<Activity>(Activity::class.java) 
+   .build(getApplicationContext());
    
    OpenAPI.init(getApplicationContext(), partnerToken, BuildConfig.APPLICATION_ID, configuration);
    ```
