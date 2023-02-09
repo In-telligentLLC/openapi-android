@@ -1,5 +1,4 @@
 package com.intelligent.openapidemo.fragment
-
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,10 +13,7 @@ import com.intelligent.openapidemo.R
 import com.intelligent.openapidemo.R.layout
 import com.intelligent.openapidemo.utils.CommonUtils
 import com.intelligent.openapidemo.viewmodels.AlertDetailViewModel
-import com.intelligent.openapidemo.viewmodels.AlertListViewModel
-import com.sca.in_telligent.openapi.data.network.model.Notification
 import com.sca.in_telligent.openapi.data.network.model.NotificationLanguage
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -69,8 +65,12 @@ class AlertDetailFragment : Fragment() {
             displayLanguages()
 
         }
-        activity?.let { alertDetailViewModel.getLanguages() }
-        activity?.let { alertDetailViewModel.getAlertDetail(notificationId) }
+        activity?.let { context?.let { it1 -> alertDetailViewModel.getLanguages(it1) } }
+        activity?.let { context?.let { it1 ->
+            alertDetailViewModel.getAlertDetail(notificationId,
+                it1
+            )
+        } }
         alertDetailViewModel.alertDetail.observe(viewLifecycleOwner) { alertDetail ->
 
             val date = alertDetail.date
@@ -109,10 +109,12 @@ class AlertDetailFragment : Fragment() {
                 languageOption.map { it.name }.toTypedArray()
 
             ) { _: DialogInterface?, pos: Int ->
-                alertDetailViewModel.getTranslation(
-                    notificationId.toString(),
-                    languageOption[pos].language
-                )
+                context?.let {
+                    alertDetailViewModel.getTranslation(
+                        notificationId.toString(),
+                        languageOption[pos].language, it
+                    )
+                }
             }
         val dialog = builder.create()
         dialog.show()

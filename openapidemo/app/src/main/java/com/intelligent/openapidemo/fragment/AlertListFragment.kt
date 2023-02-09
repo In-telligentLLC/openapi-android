@@ -1,11 +1,9 @@
 package com.intelligent.openapidemo.fragment
-
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -62,7 +60,10 @@ class AlertListFragment : Fragment() ,AlertListAdapter.ItemClick {
 
         val alertListScreenViewModel =
             ViewModelProvider(this).get(AlertListViewModel::class.java)
-        activity?.let { alertListScreenViewModel.getAlertList(it, buildingId) }
+        activity?.let { context?.let { it1 ->
+            alertListScreenViewModel.getAlertList(it, buildingId, it1
+            )
+        } }
         alertListScreenViewModel.communityAlert.observe(viewLifecycleOwner) { communitiesAlertList ->
             Log.i("TEST", "Alertlist data")
 
@@ -83,13 +84,10 @@ class AlertListFragment : Fragment() ,AlertListAdapter.ItemClick {
 
     override fun openAlertDetail(notificationId: Int) {
 
-        activity?.let {  it.supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer,AlertDetailFragment.newInstance(notificationId))
-            .addToBackStack(null)
-            .commit()
-
-        }
-        OpenAPI.openedAlert(notificationId) { response ->
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.replace(R.id.fragmentContainer,AlertDetailFragment.newInstance(notificationId))
+            ?.addToBackStack(null)?.commit()
+        OpenAPI.openedAlert(notificationId,context) { response ->
             if (response != null && response.isSuccess) {
 
 

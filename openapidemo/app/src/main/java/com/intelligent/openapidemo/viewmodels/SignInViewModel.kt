@@ -15,7 +15,7 @@ class SignInViewModel:ViewModel () {
     fun authorizeDevice(context: Context) {
         val pushTokenSentToServer = TestApplication.pushToken
         PrintLog.print("Tag", "***********authorizeDevice() ${TestApplication.pushToken}******")
-        OpenAPI.authorization(pushTokenSentToServer) { status ->
+        OpenAPI.authorization(pushTokenSentToServer,context) { status ->
             if (status.isSuccess) {
                 PrintLog.print("Tag", "Verifying login status - Logged in ")
                 SharedPreferencesHelper.setLogedIn(context, status.isSuccess)
@@ -35,8 +35,8 @@ class SignInViewModel:ViewModel () {
     }
     private fun registerPush(context:Context, token: String) {
         OpenAPI.registerPushToken(
-            token
-        ) {
+            token,
+        context) {
 
             SharedPreferencesHelper.setFcmToken(context, TestApplication.pushToken)
 

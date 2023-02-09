@@ -14,7 +14,7 @@ class FcmUtil {
     companion object {
         val fcmToken = Observable.just("NA")
         fun registerPush(context: Context) {
-            OpenAPI.registerPushToken(SharedPreferencesHelper.getFcmToken(context)) { status ->
+            OpenAPI.registerPushToken(SharedPreferencesHelper.getFcmToken(context),context) { status ->
                 PrintLog.print(
                     "Tag",
                     "********register pushToken status $status"

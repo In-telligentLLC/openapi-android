@@ -10,7 +10,7 @@ import com.sca.in_telligent.openapi.data.network.model.Community
 
 class SearchCommunityAdapter : RecyclerView.Adapter<CommunityListAdapter.CommunityHolder>() {
 
-    private val communities: java.util.ArrayList<Community> = ArrayList()
+    val communities: java.util.ArrayList<Community> = ArrayList()
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
