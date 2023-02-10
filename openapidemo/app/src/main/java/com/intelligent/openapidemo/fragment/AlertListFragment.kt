@@ -60,10 +60,11 @@ class AlertListFragment : Fragment() ,AlertListAdapter.ItemClick {
 
         val alertListScreenViewModel =
             ViewModelProvider(this).get(AlertListViewModel::class.java)
-        activity?.let { context?.let { it1 ->
-            alertListScreenViewModel.getAlertList(it, buildingId, it1
+        activity?.let { it1 ->
+            alertListScreenViewModel.getAlertList(
+                buildingId, it1
             )
-        } }
+        }
         alertListScreenViewModel.communityAlert.observe(viewLifecycleOwner) { communitiesAlertList ->
             Log.i("TEST", "Alertlist data")
 

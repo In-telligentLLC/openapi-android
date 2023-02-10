@@ -65,12 +65,12 @@ class AlertDetailFragment : Fragment() {
             displayLanguages()
 
         }
-        activity?.let { context?.let { it1 -> alertDetailViewModel.getLanguages(it1) } }
-        activity?.let { context?.let { it1 ->
+        activity?.let{ it1 -> alertDetailViewModel.getLanguages(it1) }
+        activity?.let { it1 ->
             alertDetailViewModel.getAlertDetail(notificationId,
                 it1
             )
-        } }
+        }
         alertDetailViewModel.alertDetail.observe(viewLifecycleOwner) { alertDetail ->
 
             val date = alertDetail.date
@@ -109,11 +109,13 @@ class AlertDetailFragment : Fragment() {
                 languageOption.map { it.name }.toTypedArray()
 
             ) { _: DialogInterface?, pos: Int ->
-                context?.let {
-                    alertDetailViewModel.getTranslation(
-                        notificationId.toString(),
-                        languageOption[pos].language, it
-                    )
+                run {
+                    activity?.let {
+                        alertDetailViewModel.getTranslation(
+                            notificationId.toString(),
+                            languageOption[pos].language, it
+                        )
+                    }
                 }
             }
         val dialog = builder.create()
