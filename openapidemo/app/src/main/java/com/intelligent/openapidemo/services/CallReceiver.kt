@@ -28,13 +28,13 @@ class CallReceiver : HeadsUpNotificationActionReceiver() {
             val notificationManager =
                 context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.cancel(data!!.notificationModel.id.toInt())
-            OpenAPI.getInstance().audioHelper.stopRingtone()
+            OpenAPI.getAudioHelper().stopRingtone()
             if (action != null) {
                 if (action == Actions.ACTION_MARK_AS_READ && data != null) {
                     Log.i(TAG, "Mark as Read action")
                     Toast.makeText(context, "Mark as Read action", Toast.LENGTH_LONG).show()
                     OpenAPI.openedAlert(
-                        data.notificationModel.id.toInt()
+                        data.notificationModel.id.toInt(),context
                     ) { successResponse: SuccessResponse? ->
                         if (successResponse != null && successResponse.isSuccess) {
                             Toast.makeText(
@@ -56,8 +56,8 @@ class CallReceiver : HeadsUpNotificationActionReceiver() {
                     Log.i(TAG, "Delete action")
                     Toast.makeText(context, "Delete action", Toast.LENGTH_LONG).show()
                     OpenAPI.deleteAlert(
-                        data.notificationModel.id.toInt()
-                    ) { successResponse: SuccessResponse? ->
+                        data.notificationModel.id.toInt(),
+                   context ) { successResponse: SuccessResponse? ->
                         if (successResponse != null && successResponse.isSuccess) {
                             Toast.makeText(
                                 context,

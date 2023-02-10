@@ -1,4 +1,5 @@
 package com.intelligent.openapidemo.viewmodels
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sca.in_telligent.openapi.OpenAPI
@@ -12,24 +13,24 @@ class AlertDetailViewModel : ViewModel() {
     var notificationDescription = MutableLiveData<String>()
     var notificationLanguages = MutableLiveData<NotificationLanguageResponse>()
 
-    fun getAlertDetail(notificationId: Int) {
+    fun getAlertDetail(notificationId: Int,context: Context) {
 
-        OpenAPI.getCompleteNotification(notificationId) { response ->
+        OpenAPI.getCompleteNotification(notificationId,context) { response ->
             alertDetail.postValue(response)
         }
 
     }
-    fun getTranslation(notificationId: String, language: String) {
+    fun getTranslation(notificationId: String, language: String,context: Context) {
 
-        OpenAPI.getTranslation(notificationId, language) { translationResponse ->
+        OpenAPI.getTranslation(notificationId, language,context) { translationResponse ->
             notificationTitle.postValue(translationResponse.title)
             notificationDescription.postValue(translationResponse.body)
         }
 
     }
-    fun getLanguages() {
+    fun getLanguages(context: Context) {
 
-        OpenAPI.getLanguages { notificationLanguageResponse ->
+        OpenAPI.getLanguages (context){ notificationLanguageResponse ->
             notificationLanguages.postValue(notificationLanguageResponse)
         }
     }

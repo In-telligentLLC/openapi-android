@@ -61,7 +61,7 @@ class SearchCommunityFragment : Fragment(R.layout.fragment_search_community) {
 
 
             override fun afterTextChanged(p0: Editable?) {
-                searchCommunityAdapter.communities.clear()
+                searchCommunityAdapter.communitiesAfterTextChanged()
                 searchCommunityAdapter.notifyDataSetChanged()
 
 
